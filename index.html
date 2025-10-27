@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টেলিগ্রাম বাজার</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <style>
+        /* === বেসিক স্টাইল (সব পেজের জন্য) === */
+        :root {
+            --color-primary: #007BFF;
+            --color-pink: #E91E63;
+            --color-blue: #00B2FF;
+            --color-green: #4CAF50;
+            --color-text-dark: #111827;
+            --color-text-medium: #374151;
+            --color-text-light: #6B7280;
+            --bg-light: #F9FAFB;
+            --bg-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.07);
+            --shadow-medium: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            color: var(--color-text-medium);
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        main {
+            display: none; /* সব পেজ ডিফল্টভাবে হাইড থাকবে */
+        }
+        
+        main.active {
+            display: block; /* শুধু অ্যাক্টিভ পেজ দেখা যাবে */
+        }
+
+        /* === পেজ ১: হোমপেজ স্টাইল === */
+        
+        /* হেডিং অ্যানিমেশন (Shine Effect) */
+        #homepage h1 {
+            color: var(--color-text-dark);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #homepage h1::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 5s infinite linear;
+        }
+        
+        @keyframes shine {
+            0% { left: -150%; }
+            100% { left: 150%; }
+        }
+        
+        /* 18+ ব্যাজ অ্যানিমেশন (Pulsing Glow) */
+        #homepage .eighteen-plus {
+            background: linear-gradient(135deg, #E0F7FF 0%, #EBF5FF 100%);
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            font-weight: 600;
+            border: 2px solid #B3E5FC;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            margin: 25px auto;
+            animation: pulse-badge 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes pulse-badge {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 25px rgba(0, 123, 255, 0.2);
+            }
+        }
+        
+        #homepage .description {
+            font-size: 1rem; color: var(--color-text-light); line-height: 1.7; margin-bottom: 30px;
+        }
+        #homepage .button {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 16px; margin-bottom: 16px; border: none;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 600; text-decoration: none;
+            color: white; box-sizing: border-box; cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+        }
+        #homepage .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+        #homepage .btn-pink { background: linear-gradient(135deg, #FF6B9A 0%, #E91E63 100%); }
+        #homepage .btn-blue { background: linear-gradient(135deg, #00B2FF 0%, #007BFF 100%); }
+        #homepage .btn-light {
+            background-color: var(--bg-white);
+            color: var(--color-text-medium);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+        #homepage .btn-light:hover { 
+            background-color: var(--bg-white); 
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        #homepage .user-count {
+            background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
+            color: white; padding: 12px 25px; border-radius: 30px; font-size: 1.05rem;
+            font-weight: 600; display: inline-block; margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.3);
+        }
+        #homepage .lang-buttons {
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
+        }
+        #homepage .lang-btn {
+            background-color: var(--bg-white); border: 1px solid var(--border-color);
+            padding: 10px 35px; border-radius: 10px; font-size: 0.95rem;
+            font-weight: 500; color: var(--color-text-medium); cursor: pointer; transition: all 0.2s ease;
+        }
+        #homepage .lang-btn:hover { background-color: #F3F4F6; border-color: #D1D5DB; }
+        
+        /* কার্ড স্টাইল (সবার জন্য) */
+        .card {
+            background-color: var(--bg-white); border-radius: 18px;
+            padding: 25px; margin-bottom: 20px; text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        #homepage .card h2 {
+            text-align: center; color: var(--color-text-dark); margin-top: 0;
+            margin-bottom: 20px; font-size: 1.3rem; font-weight: 600;
+        }
+        #homepage .card p {
+            font-size: 0.95rem; line-height: 1.7; color: var(--color-text-light); margin: 15px 0;
+            display: flex; align-items: center; gap: 10px;
+        }
+        #homepage .card p a { color: var(--color-primary); text-decoration: none; font-weight: 500; }
+        #homepage .card p svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--color-primary); opacity: 0.8; }
+
+        footer {
+            margin-top: 30px; padding-bottom: 90px;
+            font-size: 0.85rem; color: var(--color-text-light); text-align: center;
+        }
+        
+        /* === পেজ ২: গ্রুপ লিস্ট স্টাইল === */
+        #grouppage h2 {
+            font-size: 1.75rem; font-weight: 700; color: var(--color-text-dark); margin-bottom: 20px;
+        }
+        .search-bar {
+            width: 100%; padding: 15px 20px; font-size: 1rem; border-radius: 12px;
+            border: 1px solid var(--border-color); box-sizing: border-box;
+            margin-bottom: 25px; background-color: var(--bg-white);
+            transition: all 0.3s ease;
+        }
+        .search-bar:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            outline: none;
+        }
+        .product-card {
+            background-color: var(--bg-white); border-radius: 18px; padding: 20px;
+            margin-bottom: 20px; text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .product-card.hidden { display: none; }
+        .product-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600; color: var(--color-text-dark);
+        }
+        .badge {
+            padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-left: 8px;
+        }
+        .badge-premium { background-color: #FEE2E2; color: #DC2626; }
+        .badge-price { background-color: #E0E7FF; color: #4F46E5; font-size: 0.9rem; }
+        .product-description {
+            font-size: 0.95rem; color: var(--color-text-light); line-height: 1.6; margin-bottom: 20px;
+        }
+        .product-buttons { display: flex; gap: 10px; }
+        .product-btn {
+            flex: 1; padding: 12px; border-radius: 10px; border: none;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; text-decoration: none;
+            display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;
+        }
+        .btn-demo { 
+            background-color: #F3F4F6; color: var(--color-text-medium); 
+            border: 1px solid var(--border-color); 
+        }
+        .btn-demo:hover { background-color: #E5E7EB; }
+        .btn-add-cart {
+            background: linear-gradient(135deg, #FF6B9A 0%, #E91E63 100%); color: white;
+            box-shadow: 0 4px 10px rgba(233, 30, 99, 0.2);
+        }
+        .btn-add-cart:hover { opacity: 0.9; transform: scale(1.03); }
+        .btn-buy-now {
+            background: linear-gradient(135deg, #00B2FF 0%, #007BFF 100%); color: white;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+        .btn-buy-now:hover { opacity: 0.9; transform: scale(1.03); }
+        
+        /* পেজিনেশন ও ব্যাক বাটন (গ্রুপ ও রিভিউ পেজ) */
+        .pagination-controls { margin-top: 30px; }
+        .btn-load-more {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, #00B2FF 0%, #007BFF 100%);
+            color: white; border: none; border-radius: 14px; font-size: 1rem;
+            font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+            margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0, 150, 255, 0.3);
+        }
+        .btn-load-more:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-load-more.hidden { display: none; }
+        .btn-back {
+            width: 100%; padding: 16px; background-color: var(--bg-white);
+            color: var(--color-text-medium); border: 1px solid var(--border-color); 
+            border-radius: 14px; font-size: 1rem; font-weight: 600; cursor: pointer; 
+            transition: all 0.3s ease;
+        }
+        .btn-back:hover { background-color: #F3F4F6; border-color: #D1D5DB; }
+
+
+        /* === পেজ ৩: রিভিউ পেজ স্টাইল === */
+        #reviewpage h2 {
+            font-size: 1.75rem; font-weight: 700; color: var(--color-text-dark); margin-bottom: 25px;
+        }
+        .review-card {
+            background-color: var(--bg-white); border-radius: 18px;
+            padding: 20px; margin-bottom: 15px; text-align: left;
+            display: flex; align-items: flex-start; gap: 15px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        .review-card img {
+            width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
+        .review-content { flex: 1; }
+        .review-content h3 {
+            margin: 0 0 5px 0; font-size: 1.1rem;
+            font-weight: 600; color: var(--color-text-dark);
+        }
+        .review-content p {
+            margin: 0; font-size: 0.95rem;
+            color: var(--color-text-light); line-height: 1.6;
+        }
+        .review-likes {
+            margin-top: 15px; display: flex; gap: 20px;
+            font-size: 0.9rem; color: var(--color-text-light);
+        }
+        .review-form-card {
+            background-color: var(--bg-white); border-radius: 18px;
+            padding: 25px; margin: 30px 0; text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        .review-form-card h2 {
+            text-align: center; font-size: 1.3rem; margin-top: 0; color: var(--color-text-dark);
+        }
+        .review-form-card textarea {
+            width: 100%; min-height: 100px; box-sizing: border-box;
+            border: 1px solid var(--border-color); border-radius: 12px;
+            padding: 15px; font-size: 0.95rem;
+            font-family: 'Inter', Arial, sans-serif; margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .review-form-card textarea:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            outline: none;
+        }
+        .btn-submit-review {
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, #00B2FF 0%, #007BFF 100%);
+            color: white; border: none; border-radius: 14px;
+            font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 150, 255, 0.3);
+        }
+        .btn-submit-review:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* === পেজ ৪: পেমেন্ট পেজ স্টাইল === */
+        #paymentpage h2 {
+            font-size: 1.75rem; font-weight: 700; color: var(--color-text-dark); margin-bottom: 25px;
+        }
+        .payment-number-card {
+            background-color: var(--bg-white);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
+        }
+        .payment-number-card span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+        }
+        .btn-copy {
+            background-color: #E0E7FF;
+            color: #4F46E5;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-copy:hover { background-color: #C7D2FE; }
+        
+        .payment-rules {
+            background-color: var(--bg-white);
+            border-radius: 18px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        .payment-rules h3 {
+            margin-top: 0; font-size: 1.3rem; color: var(--color-text-dark);
+        }
+        .payment-rules ul {
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+        .payment-rules ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+        .payment-rules ul li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .payment-info {
+            text-align: left;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            margin-bottom: 15px;
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        .payment-info p { margin: 10px 0; }
+        .payment-info span { color: var(--color-primary); font-weight: 600; }
+        
+        .payment-form {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        .payment-form .form-group {
+            margin-bottom: 15px;
+        }
+        .payment-form input[type="text"],
+        .payment-form input[type="number"] {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            background-color: var(--bg-white);
+            transition: all 0.3s ease;
+        }
+        .payment-form input[type="text"]:focus,
+        .payment-form input[type="number"]:focus {
+             border-color: var(--color-primary);
+             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+             outline: none;
+        }
+        .payment-form input[readonly] {
+            background-color: #F3F4F6;
+            font-weight: 600;
+            color: var(--color-text-medium);
+        }
+        .payment-form h3 {
+            font-size: 1.2rem;
+            color: var(--color-text-dark);
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .btn-submit-payment {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--color-green) 0%, #388E3C 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        .btn-submit-payment:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* === পেজ ৫: কার্ট পেজ স্টাইল === */
+        #cartpage h2 {
+            font-size: 1.75rem; font-weight: 700; color: var(--color-text-dark); margin-bottom: 25px;
+        }
+        .cart-item {
+            background-color: var(--bg-white);
+            border-radius: 14px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .cart-item-details h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+            color: var(--color-text-dark);
+        }
+        .cart-item-details span {
+            font-size: 1rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .btn-remove-item {
+            background-color: #FEE2E2;
+            color: #DC2626;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-remove-item:hover { background-color: #FECACA; }
+        
+        .cart-total {
+            background-color: var(--bg-white);
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 25px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+        }
+        .cart-total h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            color: var(--color-text-dark);
+        }
+        .cart-total p {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        .btn-checkout {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FF6B9A 0%, #E91E63 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 15px 0 0 0;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-checkout:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        #cart-empty-message {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin: 40px 0;
+        }
+        
+        
+        /* === নতুন পেজ ৬: আবেদন সম্পন্ন (রশিদ) === */
+        #receiptpage h2 {
+            font-size: 1.75rem; font-weight: 700;
+            color: var(--color-green);
+            margin-bottom: 10px;
+        }
+        #receiptpage .receipt-message {
+            font-size: 1rem; color: var(--color-text-light); line-height: 1.7; margin-bottom: 25px;
+        }
+        .receipt-success-icon {
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+        .receipt-card {
+            background-color: var(--bg-white);
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-color);
+        }
+        .receipt-header {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed var(--border-color);
+        }
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .receipt-item strong {
+            color: var(--color-text-medium);
+            font-weight: 500;
+            margin-right: 10px;
+            flex-shrink: 0; /* লেখা ছোট হতে দেবে না */
+        }
+        .receipt-item span {
+            color: var(--color-text-dark);
+            font-weight: 600;
+            text-align: right;
+            word-break: break-all; /* লম্বা টেক্সট ভেঙ্গে দেখাবে */
+        }
+        
+        .btn-download-receipt {
+            width: 100%; padding: 16px; 
+            background: linear-gradient(135deg, #00B2FF 0%, #007BFF 100%);
+            color: white; border: none; border-radius: 14px; font-size: 1rem;
+            font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+            margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0, 150, 255, 0.3);
+        }
+        .btn-download-receipt:hover { opacity: 0.9; transform: translateY(-2px); }
+        
+        .btn-back-home {
+            width: 100%; padding: 16px; background-color: var(--bg-white);
+            color: var(--color-text-medium); border: 1px solid var(--border-color); 
+            border-radius: 14px; font-size: 1rem; font-weight: 600; cursor: pointer; 
+            transition: all 0.3s ease;
+        }
+        .btn-back-home:hover { background-color: #F3F4F6; border-color: #D1D5DB; }
+        
+
+        /* === নতুন পেজ ৭: ক্রয়ের ইতিহাস === */
+        #historypage h2 {
+            font-size: 1.75rem; font-weight: 700; color: var(--color-text-dark); margin-bottom: 25px;
+        }
+        #history-empty-message {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin: 40px 0;
+        }
+        .history-card {
+            background-color: var(--bg-white);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #F0F0F0;
+        }
+        .history-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.25rem;
+            color: var(--color-text-dark);
+        }
+        .history-details {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .history-details p {
+            margin: 4px 0;
+        }
+        .history-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .btn-download-history, .btn-support-link {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-download-history {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+        }
+        .btn-support-link {
+            background-color: #F3F4F6;
+            color: var(--color-text-medium);
+            border: 1px solid var(--border-color);
+        }
+        
+
+        /* === লাইভ সাপোর্ট (সব পেজে) === */
+        .live-support {
+            position: fixed; bottom: 20px; right: 20px;
+            background: linear-gradient(135deg, #00B2FF 0%, #007BFF 100%);
+            color: white; padding: 12px 20px; border-radius: 30px;
+            font-size: 0.95rem; font-weight: 600; text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0, 150, 255, 0.5);
+            z-index: 1000; display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .live-support:hover { transform: scale(1.05); box-shadow: 0 6px 25px rgba(0, 150, 255, 0.6); }
+
+    </style>
+</head>
+<body>
+
+    <main id="homepage" class="active">
+        <div class="container">
+            <h1>টেলিগ্রাম বাজার 🚀💬</h1>
+            <div class="eighteen-plus">18+</div>
+            <p class="description">
+                💡 টেলিগ্রাম গ্রুপ সেল – প্রিমিয়াম গ্রুপ, প্রিমিয়াম ভিডিও, 4K Plus Regulations, লো প্রাইস এবং ফাস্ট সার্ভিস! তাই এখনি জয়েন হন 👇
+            </p>
+            <a href="#" class="button btn-pink" data-page="grouppage">💰 গ্রুপ দেখুন</a>
+            <a href="#" class="button btn-blue" data-page="reviewpage">🔗 রিভিউ দেখুন</a>
+            <a href="#" class="button btn-light" data-page="historypage">📝 ক্রয়ের ইতিহাস</a>
+            <a href="#" class="button btn-light" data-page="cartpage">🛒 কার্ট দেখুন</a>
+            <div class="user-count">👤 ব্যবহারকারী: 10,025+</div>
+            <div class="lang-buttons">
+                <button class="lang-btn">বাংলা</button>
+                <button class="lang-btn">English</button>
+            </div>
+            <div class="card">
+                <h2>আমাদের সম্পর্কে</h2>
+                <p>টেলিগ্রাম বাজার হলো একটি প্ল্যাটফর্ম...</p>
+            </div>
+            <div class="card">
+                <h2>সাপোর্ট</h2>
+                <p><span>WhatsApp: <a href="#">এখানে ক্লিক করুন</a></span></p>
+                <p><span>Email: <a href="mailto:support@example.com">support@example.com</a></span></p>
+                <p><span>Telegram: <a href="#">এখানে ক্লিক করুন</a></span></p>
+            </div>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+
+    <main id="grouppage">
+        <div class="container">
+            <h2>প্রিমিয়াম গ্রুপ সমূহ 🔥</h2>
+            <input type="text" class="search-bar" placeholder="গ্রুপ অনুসন্ধান করুন...">
+            <div id="product-list">
+                
+                <div class="product-card">
+                    <div class="product-header">
+                        <span class="product-title">প্রিমিয়াম গ্রুপ ১ <span class="badge badge-premium">Premium</span></span>
+                        <span class="badge badge-price">৳ 199</span>
+                    </div>
+                    <p class="product-description">সকল প্রিমিয়াম কন্টেন্ট। ৪.৬ হাজার প্লাস এবং HD তে দেখতে পাবে লাইভ টাইম এর জন্য।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="প্রিমিয়াম গ্রুপ ১" data-group-price="199">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="প্রিমিয়াম গ্রুপ ১" data-group-price="199">🚀 Buy Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-header">
+                        <span class="product-title">কেরালা প্রিমিয়াম <span class="badge badge-premium">Premium</span></span>
+                        <span class="badge badge-price">৳ 39</span>
+                    </div>
+                    <p class="product-description">সকল Kerala প্রিমিয়াম ভিডিও ও ৩ হাজার প্লাস। প্রতিনিয়ত আপলোড করা হচ্ছে ভিডিও।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="কেরালা প্রিমিয়াম" data-group-price="39">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="কেরালা প্রিমিয়াম" data-group-price="39">🚀 Buy Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-header">
+                        <span class="product-title">এক্সক্লুসিভ কালেকশন <span class="badge badge-premium">Premium</span></span>
+                        <span class="badge badge-price">৳ 29</span>
+                    </div>
+                    <p class="product-description">এখানে ৪০ হাজার প্লাস ভিডিও ও ফটো পাবে। আর HD দেখতে পাবে।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="এক্সক্লুসিভ কালেকশন" data-group-price="29">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="এক্সক্লুসিভ কালেকশন" data-group-price="29">🚀 Buy Now</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-header"><span class="product-title">গ্রুপ আইটেম ৪ <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 99</span></div>
+                    <p class="product-description">গ্রুপের ডেমো বর্ণনা এখানে লেখা হবে।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="গ্রুপ আইটেম ৪" data-group-price="99">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="গ্রুপ আইটেম ৪" data-group-price="99">🚀 Buy Now</a>
+                    </div>
+                </div>
+                 <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৫</span>...</div> ...</div>
+                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৬</span>...</div> ...</div>
+                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৭</span>...</div> ...</div>
+                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৮</span>...</div> ...</div>
+                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৯</span>...</div> ...</div>
+                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১০</span>...</div> ...</div>
+                
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১১</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১২</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৩</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৪</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৫</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৬</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৭</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৮</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৯</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২০</span>...</div> ...</div>
+
+            </div> <div class="pagination-controls">
+                <button class="btn-load-more" id="load-more-btn">আরও দেখুন</button>
+                <button class="btn-back" data-page="back">🔙 Back</button>
+            </div>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+
+    <main id="reviewpage">
+        <div class="container">
+            <h2>রিয়েলিস্টিক রিভিউ</h2>
+            <div id="review-list">
+                 <div class="review-card"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Profile Picture"><div class="review-content"><h3>Mr. Rumon</h3><p>সেবা খুব ভালো! এখানে অনেক সুবিধা পেলাম।</p><div class="review-likes"><span>👍 0</span> <span>👎 0</span></div></div></div>
+                 <div class="review-card"><img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Profile Picture"><div class="review-content"><h3>Md. Rakinul</h3><p>গ্রুপগুলো বেশ আকর্ষণীয় এবং নিরাপদ।</p><div class="review-likes"><span>👍 0</span> <span>👎 0</span></div></div></div>
+                <div class="review-card"><img src="https://images.pexels.com/photos/1043473/pexels-photo-1043473.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Profile Picture"><div class="review-content"><h3>Masum</h3><p>আমি নতুন সদস্য, কিন্তু সব কিছু সহজে বুঝতে পারলাম।</p><div class="review-likes"><span>👍 0</span> <span>👎 0</span></div></div></div>
+                <div class="review-card"><img src="https://images.pexels.com/photos/937481/pexels-photo-937481.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Profile Picture"><div class="review-content"><h3>Rakib lislam</h3><p>অফারগুলো সত্যিই দারুন।</p><div class="review-likes"><span>👍 0</span> <span>👎 0</span></div></div></div>
+                <div class="review-card"><img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1" alt="Profile Picture"><div class="review-content"><h3>Monika</h3><p>মোবাইল থেকে সব কাজ খুব সহজ।</p><div class="review-likes"><span>👍 0</span> <span>👎 0</span></div></div></div>
+            </div>
+            <div class="review-form-card">
+                <h2>আপনার মতামত দিন</h2>
+                <textarea placeholder="আপনার মূল্যবান মতামত এখানে লিখুন..."></textarea>
+                <button class="btn-submit-review">মতামত জমা দিন</button>
+            </div>
+            <div class="pagination-controls">
+                <button class="btn-back" data-page="back">🔙 Back</button>
+            </div>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+
+    <main id="paymentpage">
+        <div class="container">
+            <h2>💳 পেমেন্ট করুন 🔐</h2>
+            <div class="payment-number-card">
+                <span id="bkash-number">01718189653 (Bkash)</span>
+                <button class="btn-copy" data-copy-text="01718189653">কপি করুন</button>
+            </div>
+            <div class="payment-number-card">
+                <span id="nagad-number">01811384582 (Nagad)</span>
+                <button class="btn-copy" data-copy-text="01811384582">কপি করুন</button>
+            </div>
+            <div class="payment-rules">
+                <h3>পেমেন্টের নিয়মাবলী:</h3>
+                <ul>
+                    <li>অ্যাপ বা ডায়াল করে উপরে দেওয়া নাম্বারে **Send Money** করুন।</li>
+                    <li>পেমেন্ট করার পর **Transaction ID** কপি করুন।</li>
+                    <li>নিচের ফর্মটি সঠিক তথ্য দিয়ে পূরণ করুন।</li>
+                    <li>ফর্ম সাবমিট করার পর আপনার তথ্য যাচাই করা হবে।</li>
+                    <li>যাচাই সম্পন্ন হলে আপনাকে টেলিগ্রাম গ্রুপের লিংক দেওয়া হবে।</li>
+                </ul>
+            </div>
+            <div class="payment-info">
+                <p><strong>গ্রুপ:</strong> <span id="payment-group-name">N/A</span></p>
+                <p><strong>প্রাইস:</strong> <span id="payment-group-price">0</span> টাকা</p>
+            </div>
+            <form class="payment-form" id="payment-form">
+                <h3>যে টেলিগ্রাম আইডিতে এড করা সেই আইডির ইউজার নাম দাও</h3>
+                <div class="form-group">
+                    <input type="text" id="user-name" placeholder="আপনার নাম" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="telegram-username" placeholder="টেলিগ্রাম ইউজারনেম (@username)" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="payment-amount-input" placeholder="টাকার পরিমাণ" required readonly>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="transaction-id" placeholder="ট্রানজেকশন আইডি" required>
+                </div>
+                <button type="submit" class="btn-submit-payment" id="submit-payment-btn">✅ Submit Payment</button>
+            </form>
+            <div class="pagination-controls">
+                 <button class="btn-back" data-page="back">🔙 Back</button>
+            </div>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+
+    <main id="cartpage">
+        <div class="container">
+            <h2>🛒 আপনার কার্ট</h2>
+            <div id="cart-items-list">
+                <p id="cart-empty-message">আপনার কার্ট খালি।</p>
+            </div>
+            <div class="cart-total" id="cart-total-section" style="display: none;">
+                <h3>মোট</h3>
+                <p id="cart-total-price">৳ 0</p>
+                <button class="btn-checkout" id="cart-checkout-btn">পেমেন্ট করুন</button>
+            </div>
+            <div class="pagination-controls">
+                <button class="btn-back" data-page="back">🔙 Back</button>
+            </div>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+
+    <main id="receiptpage">
+        <div class="container">
+            <div class="receipt-success-icon">🎉</div>
+            <h2>আবেদন সম্পন্ন!</h2>
+            <p class="receipt-message">তোমার আবেদন গ্রহণ করা হয়েছে – যাচাইয়ের পর লিংক প্রেরণ করা হবে। ধন্যবাদ 😉</p>
+            <div class="receipt-card" id="receipt-card">
+                <div class="receipt-header">টেলিগ্রাম বাজার</div>
+                <div class="receipt-item">
+                    <strong>👤 নাম:</strong>
+                    <span id="receipt-name">N/A</span>
+                </div>
+                <div class="receipt-item">
+                    <strong>💬 গ্রুপ:</strong>
+                    <span id="receipt-group">N/A</span>
+                </div>
+                <div class="receipt-item">
+                    <strong>🔑 ট্রানজেকশন আইডি:</strong>
+                    <span id="receipt-txn-id">N/A</span>
+                </div>
+                <div class="receipt-item">
+                    <strong>🧾 যাচাই কোড:</strong>
+                    <span id="receipt-verify-code">N/A</span>
+                </div>
+                <div class="receipt-item">
+                    <strong>🗓️ সময়:</strong>
+                    <span id="receipt-time">N/A</span>
+                </div>
+                <div class="receipt-item">
+                    <strong>💰 দাম:</strong>
+                    <span id="receipt-price">N/A</span>
+                </div>
+            </div>
+            <button class="btn-download-receipt" id="download-receipt-btn">📥 ডাউনলোড প্রমাণপত্র</button>
+            <button class="btn-back-home" data-page="homepage">🏠 Back to Home</button>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+    
+    <main id="historypage">
+         <div class="container">
+            <h2>📝 ক্রয়ের ইতিহাস</h2>
+            <div id="history-list-container">
+                <p id="history-empty-message">আপনার ক্রয়ের কোনো ইতিহাস নেই।</p>
+            </div>
+            <div class="pagination-controls">
+                 <button class="btn-back" data-page="back">🔙 Back</button>
+            </div>
+            <footer><p>© 2025 টেলিগ্রাম বাজার | সমস্ত অধিকার সংরক্ষিত।</p></footer>
+        </div>
+    </main>
+
+
+    <a href="#" class="live-support">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+          <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+        </svg>
+        লাইভ সাপোর্ট
+    </a>
+
+    <div id="temp-receipt-container" style="position: absolute; left: -9999px; width: 400px;"></div>
+
+
+    <script>
+        // === গ্লোবাল ভেরিয়েবল ===
+        const CART_KEY = 'telegramBazarCart';
+        const HISTORY_KEY = 'telegramBazarHistory';
+        
+        let cart = [];
+        let purchaseHistory = [];
+        
+        const allPages = document.querySelectorAll('main');
+        const allNavButtons = document.querySelectorAll('[data-page]');
+
+        // --- ডেটা সেভ ও লোড ---
+        function saveCart() { localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+        function loadCart() {
+            try {
+                const savedCart = localStorage.getItem(CART_KEY);
+                if (savedCart) cart = JSON.parse(savedCart);
+            } catch (e) {
+                console.error("Failed to load cart from localStorage", e);
+                cart = []; // কোনো সমস্যা হলে কার্ট খালি করে দাও
+            }
+        }
+        function saveHistory() { localStorage.setItem(HISTORY_KEY, JSON.stringify(purchaseHistory)); }
+        function loadHistory() {
+             try {
+                const savedHistory = localStorage.getItem(HISTORY_KEY);
+                if (savedHistory) purchaseHistory = JSON.parse(savedHistory);
+            } catch (e) {
+                console.error("Failed to load history from localStorage", e);
+                purchaseHistory = []; // কোনো সমস্যা হলে ইতিহাস খালি করে দাও
+            }
+        }
+        
+        // --- পেজ নেভিগেশন (হ্যাশ ব্যবহার করে) ---
+        function showPage(pageId) {
+            if (pageId === 'back') {
+                history.back(); 
+            } else {
+                location.hash = pageId; 
+            }
+        }
+
+        function displayPage(pageId) {
+            if (!pageId) pageId = 'homepage';
+            
+            allPages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            } else {
+                document.getElementById('homepage').classList.add('active'); 
+            }
+            
+            if (pageId === 'cartpage') renderCart();
+            if (pageId === 'historypage') renderHistory();
+            
+            window.scrollTo(0, 0);
+        }
+
+        // --- ইভেন্ট লিসেনার ---
+        window.addEventListener('hashchange', () => displayPage(location.hash.substring(1)));
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCart();
+            loadHistory();
+            displayPage(location.hash.substring(1)); 
+        });
+
+        allNavButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                if (pageId) showPage(pageId);
+            });
+        });
+
+        
+        // === গ্রুপ পেজের "আরও দেখুন" বাটন ===
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadMoreBtn) {
+            const hiddenCards = document.querySelectorAll('#grouppage .product-card.hidden');
+            let shownCount = 0;
+            loadMoreBtn.addEventListener('click', function() {
+                const showNow = 10;
+                for (let i = 0; i < showNow; i++) {
+                    const cardIndex = shownCount + i;
+                    if (hiddenCards[cardIndex]) hiddenCards[cardIndex].classList.remove('hidden');
+                }
+                shownCount += showNow;
+                if (shownCount >= hiddenCards.length) loadMoreBtn.style.display = 'none';
+            });
+        }
+        
+        // === পেমেন্ট পেজ পপুলেট করা ===
+        function populatePaymentForm(groupName, price) {
+            const groupNameEl = document.querySelector('#paymentpage .payment-info p:nth-child(1) span');
+            const groupPriceEl = document.querySelector('#paymentpage .payment-info p:nth-child(2) span');
+            const amountInput = document.getElementById('payment-amount-input');
+            groupNameEl.textContent = groupName;
+            groupPriceEl.textContent = price;
+            amountInput.value = price;
+            amountInput.setAttribute('readonly', true);
+        }
+
+        // === "Buy Now" বাটন ===
+        document.querySelectorAll('.btn-buy-now').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const groupName = this.getAttribute('data-group-name');
+                const groupPrice = this.getAttribute('data-group-price');
+                populatePaymentForm(groupName, groupPrice);
+                showPage('paymentpage');
+            });
+        });
+
+        // === "Add to Cart" বাটন ===
+        document.querySelectorAll('.btn-add-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const groupName = this.getAttribute('data-group-name');
+                const groupPrice = parseInt(this.getAttribute('data-group-price'));
+                cart.push({ name: groupName, price: groupPrice });
+                saveCart(); 
+                this.textContent = '✅ Added!';
+                this.style.background = 'linear-gradient(135deg, var(--color-green) 0%, #388E3C 100%)';
+                this.disabled = true;
+                setTimeout(() => {
+                    this.innerHTML = '🛒 Add to Cart';
+                    this.style.background = 'linear-gradient(135deg, #FF6B9A 0%, #E91E63 100%)';
+                    this.disabled = false;
+                }, 2000);
+            });
+        });
+
+        // === কার্ট পেজ রেন্ডার করা ===
+        function renderCart() {
+            const cartList = document.getElementById('cart-items-list');
+            const cartTotalSection = document.getElementById('cart-total-section');
+            const cartEmptyMessage = document.getElementById('cart-empty-message');
+            cartList.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartList.appendChild(cartEmptyMessage);
+                cartEmptyMessage.style.display = 'block';
+                cartTotalSection.style.display = 'none';
+            } else {
+                cartEmptyMessage.style.display = 'none';
+                cartTotalSection.style.display = 'block';
+                let totalPrice = 0;
+                cart.forEach((item, index) => {
+                    totalPrice += item.price;
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <span>৳ ${item.price}</span>
+                        </div>
+                        <button class="btn-remove-item" data-index="${index}">Remove</button>
+                    `;
+                    cartList.appendChild(itemElement);
+                });
+                document.getElementById('cart-total-price').textContent = `৳ ${totalPrice}`;
+            }
+        }
+        
+        // === কার্ট থেকে আইটেম রিমুভ ===
+        document.getElementById('cart-items-list').addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-remove-item')) {
+                const index = parseInt(e.target.getAttribute('data-index'));
+                cart.splice(index, 1);
+                saveCart(); 
+                renderCart();
+            }
+        });
+
+        // === কার্ট চেকআউট বাটন ===
+        document.getElementById('cart-checkout-btn').addEventListener('click', function() {
+            let totalPrice = 0;
+            let itemNames = cart.map(item => item.name); // সব নাম Array হিসাবে নেওয়া
+            cart.forEach(item => { totalPrice += item.price; });
+            
+            // নামগুলোকে কমা দিয়ে স্ট্রিং বানানো (যদি একটির বেশি হয়)
+            const groupNameString = itemNames.length > 1 ? itemNames.join(', ') : itemNames[0]; 
+            
+            populatePaymentForm(groupNameString, totalPrice); // স্ট্রিং পাস করা
+            showPage('paymentpage');
+        });
+
+        // === কপি বাটন ফাংশন ===
+        document.querySelectorAll('.btn-copy').forEach(button => {
+            button.addEventListener('click', function() {
+                const textToCopy = this.getAttribute('data-copy-text');
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    this.textContent = 'Copied!';
+                    setTimeout(() => { this.textContent = 'কপি করুন'; }, 2000);
+                });
+            });
+        });
+        
+        // --- পেমেন্ট সাবমিট ---
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const groupNameFromForm = document.querySelector('#paymentpage .payment-info p:nth-child(1) span').textContent;
+            
+            const receiptData = {
+                name: document.getElementById('user-name').value,
+                telegram: document.getElementById('telegram-username').value,
+                txnId: document.getElementById('transaction-id').value,
+                group: groupNameFromForm, // সরাসরি ফর্ম থেকে গ্রুপের নাম/নামগুলো নেওয়া
+                price: document.querySelector('#paymentpage .payment-info p:nth-child(2) span').textContent,
+                time: new Date().toLocaleString('bn-BD', { dateStyle: 'long', timeStyle: 'short' }),
+                verifyCode: (Math.random().toString(36).substring(2, 8)).toUpperCase()
+            };
+            purchaseHistory.push(receiptData);
+            saveHistory(); 
+            
+            // যদি কার্ট থেকে পেমেন্ট হয় (অর্থাৎ কমা ',' থাকে নামে), কার্ট খালি করা
+            if (groupNameFromForm.includes(',')) {
+                cart = [];
+                saveCart(); 
+            }
+            
+            populateReceiptPage(receiptData);
+            showPage('receiptpage');
+            e.target.reset();
+        });
+
+        // --- রশিদ পেজ পূরণ করা ---
+        function populateReceiptPage(data) {
+            document.getElementById('receipt-name').textContent = data.name;
+            document.getElementById('receipt-group').textContent = data.group;
+            document.getElementById('receipt-txn-id').textContent = data.txnId;
+            document.getElementById('receipt-verify-code').textContent = data.verifyCode;
+            document.getElementById('receipt-time').textContent = data.time;
+            document.getElementById('receipt-price').textContent = `৳ ${data.price}`;
+        }
+        
+        // --- রশিদ ডাউনলোড (রশিদ পেজ থেকে) ---
+        document.getElementById('download-receipt-btn').addEventListener('click', function() {
+            downloadReceiptElement('receipt-card');
+        });
+        
+        // --- রশিদ ডাউনলোড (যেকোনো এলিমেন্ট থেকে) ---
+        function downloadReceiptElement(elementId) {
+            const elementToDownload = document.getElementById(elementId);
+            if (!elementToDownload) return;
+
+            html2canvas(elementToDownload, { scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = `payment-receipt-${Date.now()}.png`;
+                link.click();
+            });
+        }
+        
+        // --- ইতিহাস পেজ রেন্ডার করা ---
+        function renderHistory() {
+            const historyContainer = document.getElementById('history-list-container');
+            const emptyMessage = document.getElementById('history-empty-message');
+            historyContainer.innerHTML = '';
+            
+            loadHistory(); // **গুরুত্বপূর্ণ: রেন্ডার করার আগে লোড করতে হবে**
+            
+            if (purchaseHistory.length === 0) {
+                historyContainer.appendChild(emptyMessage);
+                emptyMessage.style.display = 'block';
+            } else {
+                emptyMessage.style.display = 'none';
+                purchaseHistory.slice().reverse().forEach((item, index) => {
+                    const originalIndex = purchaseHistory.length - 1 - index;
+                    const card = document.createElement('div');
+                    card.className = 'history-card';
+                    
+                    // স্যানিটাইজড নাম (শুধুমাত্র প্রথম দুটি গ্রুপের জন্য)
+                    let displayName = item.group;
+                    if (displayName === 'প্রিমিয়াম গ্রুপ ১') displayName = 'প্রিমিয়াম গ্রুপ 🔥'; 
+                    else if (displayName === 'এক্সক্লুসিভ কালেকশন') displayName = 'এক্সক্লুসিভ কালেকশন 🔞'; 
+                    // যদি একাধিক নাম থাকে, সংক্ষিপ্ত করা যেতে পারে
+                    else if (displayName.includes(',')) {
+                         displayName = displayName.split(',').slice(0, 2).join(', ') + (displayName.split(',').length > 2 ? '...' : '');
+                    }
+                    
+                    card.innerHTML = `
+                        <h3>${displayName}</h3>
+                        <div class="history-details">
+                            <p><strong>প্রাইস:</strong> ${item.price} টাকা</p>
+                            <p><strong>সময়:</strong> ${item.time}</p>
+                        </div>
+                        <div class="history-buttons">
+                            <button class="btn-download-history" data-history-index="${originalIndex}">📥 ডাউনলোড প্রমাণপত্র</button>
+                            <a href="https://t.me/your_support_username" target="_blank" class="btn-support-link">💬 এখনো এড পাইনি</a> 
+                        </div>
+                    `;
+                    historyContainer.appendChild(card);
+                });
+            }
+        }
+        
+        // --- ইতিহাস পেজ থেকে সরাসরি ডাউনলোড ---
+        document.getElementById('history-list-container').addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-download-history')) {
+                const index = parseInt(e.target.getAttribute('data-history-index'));
+                const receiptData = purchaseHistory[index];
+                
+                // অদৃশ্য কন্টেইনার তৈরি করা ও ডেটা দিয়ে পূরণ করা
+                const tempReceiptContainer = document.getElementById('temp-receipt-container');
+                tempReceiptContainer.innerHTML = `
+                    <div class="receipt-card" style="font-family: 'Inter', Arial, sans-serif; padding: 25px; background: white; border-radius: 18px; border: 1px solid #E5E7EB; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); text-align: left;">
+                        <div class="receipt-header" style="text-align: center; font-size: 1.3rem; font-weight: 600; color: #111827; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 2px dashed #E5E7EB;">টেলিগ্রাম বাজার</div>
+                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">👤 নাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.name}</span></div>
+                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💬 গ্রুপ:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.group}</span></div>
+                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🔑 ট্রানজেকশন আইডি:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.txnId}</span></div>
+                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🧾 যাচাই কোড:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.verifyCode}</span></div>
+                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🗓️ সময়:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.time}</span></div>
+                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💰 দাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">৳ ${receiptData.price}</span></div>
+                    </div>
+                `;
+                
+                // ডাউনলোড শুরু করা
+                downloadReceiptElement(tempReceiptContainer.querySelector('.receipt-card'));
+                
+                // টেমপ্লেট কন্টেইনার খালি করা (অপশনাল)
+                 setTimeout(() => { tempReceiptContainer.innerHTML = ''; }, 100);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
