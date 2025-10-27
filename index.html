@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -577,13 +577,13 @@
             color: var(--color-text-medium);
             font-weight: 500;
             margin-right: 10px;
-            flex-shrink: 0; /* লেখা ছোট হতে দেবে না */
+            flex-shrink: 0; 
         }
         .receipt-item span {
             color: var(--color-text-dark);
             font-weight: 600;
             text-align: right;
-            word-break: break-all; /* লম্বা টেক্সট ভেঙ্গে দেখাবে */
+            word-break: break-word; /* লম্বা টেক্সট ভেঙ্গে দেখাবে */
         }
         
         .btn-download-receipt {
@@ -626,6 +626,7 @@
             margin: 0 0 10px 0;
             font-size: 1.25rem;
             color: var(--color-text-dark);
+            word-break: break-word; /* লম্বা নাম ভেঙ্গে দেখাবে */
         }
         .history-details {
             font-size: 0.9rem;
@@ -717,49 +718,37 @@
             <div id="product-list">
                 
                 <div class="product-card">
-                    <div class="product-header">
-                        <span class="product-title">প্রিমিয়াম গ্রুপ ১ <span class="badge badge-premium">Premium</span></span>
-                        <span class="badge badge-price">৳ 199</span>
-                    </div>
+                    <div class="product-header"><span class="product-title">প্রিমিয়াম গ্রুপ ১ <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 199</span></div>
                     <p class="product-description">সকল প্রিমিয়াম কন্টেন্ট। ৪.৬ হাজার প্লাস এবং HD তে দেখতে পাবে লাইভ টাইম এর জন্য।</p>
                     <div class="product-buttons">
-                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
                         <a href="#" class="product-btn btn-add-cart" data-group-name="প্রিমিয়াম গ্রুপ ১" data-group-price="199">🛒 Add to Cart</a>
                         <a href="#" class="product-btn btn-buy-now" data-group-name="প্রিমিয়াম গ্রুপ ১" data-group-price="199">🚀 Buy Now</a>
                     </div>
                 </div>
-                
                 <div class="product-card">
-                    <div class="product-header">
-                        <span class="product-title">কেরালা প্রিমিয়াম <span class="badge badge-premium">Premium</span></span>
-                        <span class="badge badge-price">৳ 39</span>
-                    </div>
+                    <div class="product-header"><span class="product-title">কেরালা প্রিমিয়াম <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 39</span></div>
                     <p class="product-description">সকল Kerala প্রিমিয়াম ভিডিও ও ৩ হাজার প্লাস। প্রতিনিয়ত আপলোড করা হচ্ছে ভিডিও।</p>
                     <div class="product-buttons">
-                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
                         <a href="#" class="product-btn btn-add-cart" data-group-name="কেরালা প্রিমিয়াম" data-group-price="39">🛒 Add to Cart</a>
                         <a href="#" class="product-btn btn-buy-now" data-group-name="কেরালা প্রিমিয়াম" data-group-price="39">🚀 Buy Now</a>
                     </div>
                 </div>
-
                 <div class="product-card">
-                    <div class="product-header">
-                        <span class="product-title">এক্সক্লুসিভ কালেকশন <span class="badge badge-premium">Premium</span></span>
-                        <span class="badge badge-price">৳ 29</span>
-                    </div>
+                    <div class="product-header"><span class="product-title">এক্সক্লুসিভ কালেকশন <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 29</span></div>
                     <p class="product-description">এখানে ৪০ হাজার প্লাস ভিডিও ও ফটো পাবে। আর HD দেখতে পাবে।</p>
-                    <div class="product-buttons">
-                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                     <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
                         <a href="#" class="product-btn btn-add-cart" data-group-name="এক্সক্লুসিভ কালেকশন" data-group-price="29">🛒 Add to Cart</a>
                         <a href="#" class="product-btn btn-buy-now" data-group-name="এক্সক্লুসিভ কালেকশন" data-group-price="29">🚀 Buy Now</a>
                     </div>
                 </div>
-                
                 <div class="product-card">
                     <div class="product-header"><span class="product-title">গ্রুপ আইটেম ৪ <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 99</span></div>
                     <p class="product-description">গ্রুপের ডেমো বর্ণনা এখানে লেখা হবে।</p>
                     <div class="product-buttons">
-                        <a href="#" class="product-btn btn-demo">👁 Demo</a>
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
                         <a href="#" class="product-btn btn-add-cart" data-group-name="গ্রুপ আইটেম ৪" data-group-price="99">🛒 Add to Cart</a>
                         <a href="#" class="product-btn btn-buy-now" data-group-name="গ্রুপ আইটেম ৪" data-group-price="99">🚀 Buy Now</a>
                     </div>
@@ -771,7 +760,7 @@
                 <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৯</span>...</div> ...</div>
                 <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১০</span>...</div> ...</div>
                 
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১১</span>...</div> ...</div>
+                <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১১</span>...</div> ...</div>
                  <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১২</span>...</div> ...</div>
                  <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৩</span>...</div> ...</div>
                  <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৪</span>...</div> ...</div>
@@ -781,6 +770,42 @@
                  <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৮</span>...</div> ...</div>
                  <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৯</span>...</div> ...</div>
                  <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২০</span>...</div> ...</div>
+
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">স্পেশাল কালেকশন <span class="badge badge-premium">VIP</span></span> <span class="badge badge-price">৳ 399</span></div>
+                    <p class="product-description">সম্পূর্ণ নতুন ও এক্সক্লুসিভ কন্টেন্ট এখানে পাওয়া যাবে।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="স্পেশাল কালেকশন" data-group-price="399">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="স্পেশাল কালেকশন" data-group-price="399">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">গ্রুপ আইটেম ২২ <span class="badge badge-premium">Sale</span></span> <span class="badge badge-price">৳ 69</span></div>
+                    <p class="product-description">সীমিত সময়ের জন্য বিশেষ ছাড়।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="গ্রুপ আইটেম ২২" data-group-price="69">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="গ্রুপ আইটেম ২২" data-group-price="69">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৩</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৪</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৫</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৬</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৭</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৮</span>...</div> ...</div>
+                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৯</span>...</div> ...</div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">আল্টিমেট বান্ডেল <span class="badge badge-premium">Best</span></span> <span class="badge badge-price">৳ 499</span></div>
+                    <p class="product-description">সবগুলো প্রিমিয়াম গ্রুপের আক্সেস একসাথে।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="আল্টিমেট বান্ডেল" data-group-price="499">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="আল্টিমেট বান্ডেল" data-group-price="499">🚀 Buy Now</a>
+                    </div>
+                 </div>
+
 
             </div> <div class="pagination-controls">
                 <button class="btn-load-more" id="load-more-btn">আরও দেখুন</button>
@@ -937,7 +962,7 @@
         লাইভ সাপোর্ট
     </a>
 
-    <div id="temp-receipt-container" style="position: absolute; left: -9999px; width: 400px;"></div>
+    <div id="temp-receipt-container" style="position: absolute; left: -9999px; width: 400px; padding: 10px; background-color: var(--bg-light);"></div>
 
 
     <script>
@@ -956,47 +981,31 @@
         function loadCart() {
             try {
                 const savedCart = localStorage.getItem(CART_KEY);
-                if (savedCart) cart = JSON.parse(savedCart);
-            } catch (e) {
-                console.error("Failed to load cart from localStorage", e);
-                cart = []; // কোনো সমস্যা হলে কার্ট খালি করে দাও
-            }
+                cart = savedCart ? JSON.parse(savedCart) : [];
+            } catch (e) { console.error("Failed to load cart", e); cart = []; }
         }
         function saveHistory() { localStorage.setItem(HISTORY_KEY, JSON.stringify(purchaseHistory)); }
         function loadHistory() {
-             try {
+            try {
                 const savedHistory = localStorage.getItem(HISTORY_KEY);
-                if (savedHistory) purchaseHistory = JSON.parse(savedHistory);
-            } catch (e) {
-                console.error("Failed to load history from localStorage", e);
-                purchaseHistory = []; // কোনো সমস্যা হলে ইতিহাস খালি করে দাও
-            }
+                purchaseHistory = savedHistory ? JSON.parse(savedHistory) : [];
+            } catch (e) { console.error("Failed to load history", e); purchaseHistory = []; }
         }
         
         // --- পেজ নেভিগেশন (হ্যাশ ব্যবহার করে) ---
         function showPage(pageId) {
-            if (pageId === 'back') {
-                history.back(); 
-            } else {
-                location.hash = pageId; 
-            }
+            if (pageId === 'back') history.back(); 
+            else location.hash = pageId; 
         }
 
         function displayPage(pageId) {
             if (!pageId) pageId = 'homepage';
-            
             allPages.forEach(page => page.classList.remove('active'));
-            
             const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            } else {
-                document.getElementById('homepage').classList.add('active'); 
-            }
-            
+            if (targetPage) targetPage.classList.add('active');
+            else document.getElementById('homepage').classList.add('active'); 
             if (pageId === 'cartpage') renderCart();
-            if (pageId === 'historypage') renderHistory();
-            
+            if (pageId === 'historypage') renderHistory(); // ইতিহাস পেজ দেখানোর সময় রেন্ডার
             window.scrollTo(0, 0);
         }
 
@@ -1004,7 +1013,7 @@
         window.addEventListener('hashchange', () => displayPage(location.hash.substring(1)));
         document.addEventListener('DOMContentLoaded', () => {
             loadCart();
-            loadHistory();
+            loadHistory(); // লোডের সময় ইতিহাস লোড
             displayPage(location.hash.substring(1)); 
         });
 
@@ -1020,16 +1029,24 @@
         // === গ্রুপ পেজের "আরও দেখুন" বাটন ===
         const loadMoreBtn = document.getElementById('load-more-btn');
         if (loadMoreBtn) {
-            const hiddenCards = document.querySelectorAll('#grouppage .product-card.hidden');
-            let shownCount = 0;
+            const productCards = document.querySelectorAll('#grouppage .product-card'); // সব কার্ড সিলেক্ট
+            const itemsPerPage = 10;
+            let itemsShown = itemsPerPage;
+
+            // শুরুতে ১০টির পরেরগুলো হাইড করা
+            productCards.forEach((card, index) => {
+                if (index >= itemsPerPage) card.classList.add('hidden');
+            });
+            // যদি ৩০টির কম থাকে, বাটন শুরুতেই হাইড
+             if (productCards.length <= itemsPerPage) loadMoreBtn.style.display = 'none';
+
             loadMoreBtn.addEventListener('click', function() {
-                const showNow = 10;
-                for (let i = 0; i < showNow; i++) {
-                    const cardIndex = shownCount + i;
-                    if (hiddenCards[cardIndex]) hiddenCards[cardIndex].classList.remove('hidden');
+                const nextItemsToShow = itemsShown + itemsPerPage;
+                for (let i = itemsShown; i < nextItemsToShow && i < productCards.length; i++) {
+                     if (productCards[i]) productCards[i].classList.remove('hidden');
                 }
-                shownCount += showNow;
-                if (shownCount >= hiddenCards.length) loadMoreBtn.style.display = 'none';
+                itemsShown = nextItemsToShow;
+                if (itemsShown >= productCards.length) loadMoreBtn.style.display = 'none';
             });
         }
         
@@ -1119,13 +1136,10 @@
         // === কার্ট চেকআউট বাটন ===
         document.getElementById('cart-checkout-btn').addEventListener('click', function() {
             let totalPrice = 0;
-            let itemNames = cart.map(item => item.name); // সব নাম Array হিসাবে নেওয়া
+            let itemNames = cart.map(item => item.name); 
             cart.forEach(item => { totalPrice += item.price; });
-            
-            // নামগুলোকে কমা দিয়ে স্ট্রিং বানানো (যদি একটির বেশি হয়)
-            const groupNameString = itemNames.length > 1 ? itemNames.join(', ') : itemNames[0]; 
-            
-            populatePaymentForm(groupNameString, totalPrice); // স্ট্রিং পাস করা
+            const groupNameString = itemNames.join(', '); // কমা দিয়ে স্ট্রিং 
+            populatePaymentForm(groupNameString, totalPrice); 
             showPage('paymentpage');
         });
 
@@ -1149,7 +1163,7 @@
                 name: document.getElementById('user-name').value,
                 telegram: document.getElementById('telegram-username').value,
                 txnId: document.getElementById('transaction-id').value,
-                group: groupNameFromForm, // সরাসরি ফর্ম থেকে গ্রুপের নাম/নামগুলো নেওয়া
+                group: groupNameFromForm, 
                 price: document.querySelector('#paymentpage .payment-info p:nth-child(2) span').textContent,
                 time: new Date().toLocaleString('bn-BD', { dateStyle: 'long', timeStyle: 'short' }),
                 verifyCode: (Math.random().toString(36).substring(2, 8)).toUpperCase()
@@ -1157,10 +1171,12 @@
             purchaseHistory.push(receiptData);
             saveHistory(); 
             
-            // যদি কার্ট থেকে পেমেন্ট হয় (অর্থাৎ কমা ',' থাকে নামে), কার্ট খালি করা
-            if (groupNameFromForm.includes(',')) {
-                cart = [];
-                saveCart(); 
+            // যদি কার্ট থেকে পেমেন্ট হয়, কার্ট খালি করা
+            if (cart.length > 0 && groupNameFromForm.includes(cart[0].name)) { // কার্টের প্রথম আইটেমের নাম আছে কিনা চেক
+                 if(groupNameFromForm.split(',').length === cart.length){ // গ্রুপের সংখ্যা সমান কিনা চেক
+                    cart = [];
+                    saveCart(); 
+                 }
             }
             
             populateReceiptPage(receiptData);
@@ -1171,7 +1187,7 @@
         // --- রশিদ পেজ পূরণ করা ---
         function populateReceiptPage(data) {
             document.getElementById('receipt-name').textContent = data.name;
-            document.getElementById('receipt-group').textContent = data.group;
+            document.getElementById('receipt-group').textContent = data.group; // একাধিক নাম থাকলে কমা সহ দেখাবে
             document.getElementById('receipt-txn-id').textContent = data.txnId;
             document.getElementById('receipt-verify-code').textContent = data.verifyCode;
             document.getElementById('receipt-time').textContent = data.time;
@@ -1183,16 +1199,23 @@
             downloadReceiptElement('receipt-card');
         });
         
-        // --- রশিদ ডাউনলোড (যেকোনো এলিমেন্ট থেকে) ---
+        // --- রশিদ ডাউনলোড (যেকোনো এলিমেন্ট আইডি থেকে) ---
         function downloadReceiptElement(elementId) {
             const elementToDownload = document.getElementById(elementId);
             if (!elementToDownload) return;
 
-            html2canvas(elementToDownload, { scale: 2 }).then(canvas => {
+            html2canvas(elementToDownload, { 
+                scale: 2,
+                logging: false, // কনসোল লগ বন্ধ করা
+                useCORS: true // যদি ছবিতে ক্রস-অরিজিন সমস্যা হয়
+             }).then(canvas => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
                 link.download = `payment-receipt-${Date.now()}.png`;
                 link.click();
+            }).catch(err => {
+                 console.error("Error downloading receipt:", err);
+                 alert("প্রমাণপত্র ডাউনলোড করতে সমস্যা হচ্ছে।");
             });
         }
         
@@ -1202,9 +1225,9 @@
             const emptyMessage = document.getElementById('history-empty-message');
             historyContainer.innerHTML = '';
             
-            loadHistory(); // **গুরুত্বপূর্ণ: রেন্ডার করার আগে লোড করতে হবে**
+            loadHistory(); // **গুরুত্বপূর্ণ: রেন্ডার করার আগে লোড**
             
-            if (purchaseHistory.length === 0) {
+            if (!purchaseHistory || purchaseHistory.length === 0) { // Check if purchaseHistory is null or empty
                 historyContainer.appendChild(emptyMessage);
                 emptyMessage.style.display = 'block';
             } else {
@@ -1214,11 +1237,9 @@
                     const card = document.createElement('div');
                     card.className = 'history-card';
                     
-                    // স্যানিটাইজড নাম (শুধুমাত্র প্রথম দুটি গ্রুপের জন্য)
                     let displayName = item.group;
                     if (displayName === 'প্রিমিয়াম গ্রুপ ১') displayName = 'প্রিমিয়াম গ্রুপ 🔥'; 
                     else if (displayName === 'এক্সক্লুসিভ কালেকশন') displayName = 'এক্সক্লুসিভ কালেকশন 🔞'; 
-                    // যদি একাধিক নাম থাকে, সংক্ষিপ্ত করা যেতে পারে
                     else if (displayName.includes(',')) {
                          displayName = displayName.split(',').slice(0, 2).join(', ') + (displayName.split(',').length > 2 ? '...' : '');
                     }
@@ -1243,27 +1264,39 @@
         document.getElementById('history-list-container').addEventListener('click', function(e) {
             if (e.target.classList.contains('btn-download-history')) {
                 const index = parseInt(e.target.getAttribute('data-history-index'));
-                const receiptData = purchaseHistory[index];
-                
-                // অদৃশ্য কন্টেইনার তৈরি করা ও ডেটা দিয়ে পূরণ করা
-                const tempReceiptContainer = document.getElementById('temp-receipt-container');
-                tempReceiptContainer.innerHTML = `
-                    <div class="receipt-card" style="font-family: 'Inter', Arial, sans-serif; padding: 25px; background: white; border-radius: 18px; border: 1px solid #E5E7EB; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); text-align: left;">
-                        <div class="receipt-header" style="text-align: center; font-size: 1.3rem; font-weight: 600; color: #111827; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 2px dashed #E5E7EB;">টেলিগ্রাম বাজার</div>
-                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">👤 নাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.name}</span></div>
-                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💬 গ্রুপ:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.group}</span></div>
-                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🔑 ট্রানজেকশন আইডি:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.txnId}</span></div>
-                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🧾 যাচাই কোড:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.verifyCode}</span></div>
-                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🗓️ সময়:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.time}</span></div>
-                        <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💰 দাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">৳ ${receiptData.price}</span></div>
-                    </div>
-                `;
-                
-                // ডাউনলোড শুরু করা
-                downloadReceiptElement(tempReceiptContainer.querySelector('.receipt-card'));
-                
-                // টেমপ্লেট কন্টেইনার খালি করা (অপশনাল)
-                 setTimeout(() => { tempReceiptContainer.innerHTML = ''; }, 100);
+                 if (index >= 0 && index < purchaseHistory.length) { // Check index validity
+                    const receiptData = purchaseHistory[index];
+                    
+                    // অদৃশ্য কন্টেইনার তৈরি করা ও ডেটা দিয়ে পূরণ করা
+                    const tempReceiptContainer = document.getElementById('temp-receipt-container');
+                    tempReceiptContainer.innerHTML = `
+                        <div class="receipt-card" style="font-family: 'Inter', Arial, sans-serif; padding: 25px; background: white; border-radius: 18px; border: 1px solid #E5E7EB; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); text-align: left; width: 100%; box-sizing: border-box;">
+                            <div class="receipt-header" style="text-align: center; font-size: 1.3rem; font-weight: 600; color: #111827; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 2px dashed #E5E7EB;">টেলিগ্রাম বাজার</div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">👤 নাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.name}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💬 গ্রুপ:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.group}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🔑 ট্রানজেকশন আইডি:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.txnId}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🧾 যাচাই কোড:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.verifyCode}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🗓️ সময়:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.time}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💰 দাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">৳ ${receiptData.price}</span></div>
+                        </div>
+                    `;
+                    
+                    // ডাউনলোড শুরু করার আগে একটু অপেক্ষা (টেম্পলেট রেন্ডার হওয়ার জন্য)
+                    setTimeout(() => {
+                        const elementToCapture = tempReceiptContainer.querySelector('.receipt-card');
+                        if (elementToCapture) {
+                            downloadReceiptElement(elementToCapture); // সরাসরি এলিমেন্ট পাস
+                        } else {
+                             alert("ডাউনলোড করতে সমস্যা হচ্ছে।");
+                             console.error("Temporary receipt card not found for download.");
+                        }
+                         // টেমপ্লেট কন্টেইনার খালি করা 
+                         // setTimeout(() => { tempReceiptContainer.innerHTML = ''; }, 100); 
+                    }, 100); // 100ms ডিলে
+                 } else {
+                     console.error("Invalid history index:", index);
+                     alert("ইতিহাস থেকে এই আইটেমটি ডাউনলোড করা যাচ্ছে না।");
+                 }
             }
         });
 
