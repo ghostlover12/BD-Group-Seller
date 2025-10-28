@@ -144,6 +144,8 @@
             color: white; padding: 12px 25px; border-radius: 30px; font-size: 1.05rem;
             font-weight: 600; display: inline-block; margin: 25px 0;
             box-shadow: 0 5px 20px rgba(59, 130, 246, 0.3);
+            min-width: 180px; /* যাতে সংখ্যা বাড়লে বাটন ছোটবড় না হয় */
+            transition: background 0.5s ease;
         }
         #homepage .lang-buttons {
             display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
@@ -571,7 +573,7 @@
             justify-content: space-between;
             font-size: 0.95rem;
             margin-bottom: 15px;
-            align-items: center;
+            align-items: flex-start; /* লম্বা টেক্সটের জন্য */
         }
         .receipt-item strong {
             color: var(--color-text-medium);
@@ -658,11 +660,13 @@
             color: white;
             border: none;
         }
+         .btn-download-history:hover { background-color: #0056b3; }
         .btn-support-link {
             background-color: #F3F4F6;
             color: var(--color-text-medium);
             border: 1px solid var(--border-color);
         }
+         .btn-support-link:hover { background-color: #E5E7EB; }
         
 
         /* === লাইভ সাপোর্ট (সব পেজে) === */
@@ -692,7 +696,7 @@
             <a href="#" class="button btn-blue" data-page="reviewpage">🔗 রিভিউ দেখুন</a>
             <a href="#" class="button btn-light" data-page="historypage">📝 ক্রয়ের ইতিহাস</a>
             <a href="#" class="button btn-light" data-page="cartpage">🛒 কার্ট দেখুন</a>
-            <div class="user-count">👤 ব্যবহারকারী: 10,025+</div>
+            <div class="user-count" id="user-counter">👤 ব্যবহারকারী: 10025+</div> 
             <div class="lang-buttons">
                 <button class="lang-btn">বাংলা</button>
                 <button class="lang-btn">English</button>
@@ -745,31 +749,159 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-header"><span class="product-title">গ্রুপ আইটেম ৪ <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 99</span></div>
-                    <p class="product-description">গ্রুপের ডেমো বর্ণনা এখানে লেখা হবে।</p>
+                    <div class="product-header"><span class="product-title">ঢাকা স্পেশাল <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 99</span></div>
+                    <p class="product-description">ঢাকা অঞ্চলের ব্যবহারকারীদের জন্য বিশেষ গ্রুপ। নতুন কন্টেন্ট নিয়মিত।</p>
                     <div class="product-buttons">
                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
-                        <a href="#" class="product-btn btn-add-cart" data-group-name="গ্রুপ আইটেম ৪" data-group-price="99">🛒 Add to Cart</a>
-                        <a href="#" class="product-btn btn-buy-now" data-group-name="গ্রুপ আইটেম ৪" data-group-price="99">🚀 Buy Now</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="ঢাকা স্পেশাল" data-group-price="99">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="ঢাকা স্পেশাল" data-group-price="99">🚀 Buy Now</a>
                     </div>
                 </div>
-                 <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৫</span>...</div> ...</div>
-                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৬</span>...</div> ...</div>
-                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৭</span>...</div> ...</div>
-                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৮</span>...</div> ...</div>
-                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ৯</span>...</div> ...</div>
-                <div class="product-card"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১০</span>...</div> ...</div>
+                 <div class="product-card">
+                    <div class="product-header"><span class="product-title">চট্টগ্রাম ভাইবস <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 149</span></div>
+                    <p class="product-description">চট্টগ্রামের সেরা কালেকশন। হাই কোয়ালিটি ভিডিও ও ছবি।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="চট্টগ্রাম ভাইবস" data-group-price="149">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="চট্টগ্রাম ভাইবস" data-group-price="149">🚀 Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-header"><span class="product-title">রাজশাহী এক্সপ্রেস <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 129</span></div>
+                    <p class="product-description">রাজশাহীর ব্যবহারকারীদের জন্য। নিয়মিত আপডেট ও লাইভ সেশন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="রাজশাহী এক্সপ্রেস" data-group-price="129">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="রাজশাহী এক্সপ্রেস" data-group-price="129">🚀 Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-header"><span class="product-title">সিলেট ফ্লেভার <span class="badge badge-premium">Sale</span></span> <span class="badge badge-price">৳ 79</span></div>
+                    <p class="product-description">সিলেটের আকর্ষণীয় গ্রুপ। ডিস্কাউন্ট চলছে, সীমিত সময়ের জন্য।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="সিলেট ফ্লেভার" data-group-price="79">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="সিলেট ফ্লেভার" data-group-price="79">🚀 Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-header"><span class="product-title">খুলনা ক্লাসিক <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 199</span></div>
+                    <p class="product-description">খুলনার ক্লাসিক ও রেয়ার কালেকশন। আনলিমিটেড অ্যাক্সেস।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="খুলনা ক্লাসিক" data-group-price="199">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="খুলনা ক্লাসিক" data-group-price="199">🚀 Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-header"><span class="product-title">বরিশাল বিটস <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 59</span></div>
+                    <p class="product-description">বরিশালের ট্রেন্ডিং কন্টেন্ট। দ্রুত জয়েন করুন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="বরিশাল বিটস" data-group-price="59">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="বরিশাল বিটস" data-group-price="59">🚀 Buy Now</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-header"><span class="product-title">রংপুর রাইডার্স <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 89</span></div>
+                    <p class="product-description">রংপুরের নতুন গ্রুপ। একদম ফ্রেশ কালেকশন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="রংপুর রাইডার্স" data-group-price="89">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="রংপুর রাইডার্স" data-group-price="89">🚀 Buy Now</a>
+                    </div>
+                </div>
                 
-                <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১১</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১২</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৩</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৪</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৫</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৬</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৭</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৮</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ১৯</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২০</span>...</div> ...</div>
+                <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">ঢাকা গোল্ড <span class="badge badge-premium">VIP</span></span> <span class="badge badge-price">৳ 249</span></div>
+                    <p class="product-description">ঢাকার সবচেয়ে প্রিমিয়াম কালেকশন। শুধুমাত্র এলিট মেম্বারদের জন্য।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="ঢাকা গোল্ড" data-group-price="249">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="ঢাকা গোল্ড" data-group-price="249">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">কক্সবাজার বিচ <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 119</span></div>
+                    <p class="product-description">কক্সবাজার থিমের এক্সক্লুসিভ গ্রুপ।</p>
+                    <div class="product-buttons">
+                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="কক্সবাজার বিচ" data-group-price="119">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="কক্সবাজার বিচ" data-group-price="119">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">ময়মনসিংহ মিস্ট্রি <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 179</span></div>
+                    <p class="product-description">ময়মনসিংহের হিডেন জেমস। রেগুলার আপডেট।</p>
+                     <div class="product-buttons">
+                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="ময়মনসিংহ মিস্ট্রি" data-group-price="179">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="ময়মনসিংহ মিস্ট্রি" data-group-price="179">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">কুমিল্লা ভিক্টোরিয়ান্স <span class="badge badge-premium">Sale</span></span> <span class="badge badge-price">৳ 49</span></div>
+                    <p class="product-description">কুমিল্লার ফ্যানদের জন্য। বিশেষ অফার চলছে!</p>
+                     <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="কুমিল্লা ভিক্টোরিয়ান্স" data-group-price="49">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="কুমিল্লা ভিক্টোরিয়ান্স" data-group-price="49">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">ফরিদপুর ফিউরি <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 199</span></div>
+                    <p class="product-description">ফরিদপুরের সেরা কন্টেন্ট, সব একসাথে।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="ফরিদপুর ফিউরি" data-group-price="199">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="ফরিদপুর ফিউরি" data-group-price="199">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">যশোর জংশন <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 59</span></div>
+                    <p class="product-description">যশোরের হট কালেকশন। মিস করবেন না!</p>
+                     <div class="product-buttons">
+                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="যশোর জংশন" data-group-price="59">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="যশোর জংশন" data-group-price="59">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">নোয়াখালী নাইটস <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 99</span></div>
+                    <p class="product-description">নোয়াখালীর নতুন গ্রুপ, সেরা সব ভিডিও।</p>
+                    <div class="product-buttons">
+                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="নোয়াখালী নাইটস" data-group-price="99">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="নোয়াখালী নাইটস" data-group-price="99">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">গাজীপুর গ্যাং <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 159</span></div>
+                    <p class="product-description">গাজীপুরের বিশেষ গ্রুপ। কোয়ালিটি নিশ্চিত।</p>
+                     <div class="product-buttons">
+                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="গাজীপুর গ্যাং" data-group-price="159">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="গাজীপুর গ্যাং" data-group-price="159">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">টাঙ্গাইল টাচ <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 89</span></div>
+                    <p class="product-description">টাঙ্গাইলের সেরা সব কালেকশন এখানে।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="টাঙ্গাইল টাচ" data-group-price="89">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="টাঙ্গাইল টাচ" data-group-price="89">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">দিনাজপুর ডাইনামাইটস <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 109</span></div>
+                    <p class="product-description">দিনাজপুরের নতুন গ্রুপ, এখনই জয়েন করুন।</p>
+                    <div class="product-buttons">
+                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="দিনাজপুর ডাইনামাইটস" data-group-price="109">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="দিনাজপুর ডাইনামাইটস" data-group-price="109">🚀 Buy Now</a>
+                    </div>
+                 </div>
 
                  <div class="product-card hidden">
                     <div class="product-header"><span class="product-title">স্পেশাল কালেকশন <span class="badge badge-premium">VIP</span></span> <span class="badge badge-price">৳ 399</span></div>
@@ -781,24 +913,80 @@
                     </div>
                  </div>
                  <div class="product-card hidden">
-                    <div class="product-header"><span class="product-title">গ্রুপ আইটেম ২২ <span class="badge badge-premium">Sale</span></span> <span class="badge badge-price">৳ 69</span></div>
-                    <p class="product-description">সীমিত সময়ের জন্য বিশেষ ছাড়।</p>
+                    <div class="product-header"><span class="product-title">গোল্ডেন আওয়ার <span class="badge badge-premium">Sale</span></span> <span class="badge badge-price">৳ 69</span></div>
+                    <p class="product-description">সীমিত সময়ের জন্য বিশেষ ছাড়। সেরা সব মুহূর্ত।</p>
                     <div class="product-buttons">
                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
-                        <a href="#" class="product-btn btn-add-cart" data-group-name="গ্রুপ আইটেম ২২" data-group-price="69">🛒 Add to Cart</a>
-                        <a href="#" class="product-btn btn-buy-now" data-group-name="গ্রুপ আইটেম ২২" data-group-price="69">🚀 Buy Now</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="গোল্ডেন আওয়ার" data-group-price="69">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="গোল্ডেন আওয়ার" data-group-price="69">🚀 Buy Now</a>
                     </div>
                  </div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৩</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৪</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৫</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৬</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৭</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৮</span>...</div> ...</div>
-                 <div class="product-card hidden"><div class="product-header"><span class="product-title">গ্রুপ আইটেম ২৯</span>...</div> ...</div>
+                  <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">নাইট রাইডার্স <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 219</span></div>
+                    <p class="product-description">রাতের বিশেষ কালেকশন। উচ্চ রেজোলিউশন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="নাইট রাইডার্স" data-group-price="219">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="নাইট রাইডার্স" data-group-price="219">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">সুপার সনিক <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 119</span></div>
+                    <p class="product-description">দ্রুততম আপডেট, হট কন্টেন্ট।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="সুপার সনিক" data-group-price="119">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="সুপার সনিক" data-group-price="119">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">মেগা মিক্স <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 299</span></div>
+                    <p class="product-description">বিভিন্ন ক্যাটাগরির মিক্সড কালেকশন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="মেগা মিক্স" data-group-price="299">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="মেগা মিক্স" data-group-price="299">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">ডেইলি ডোজ <span class="badge badge-premium">Premium</span></span> <span class="badge badge-price">৳ 99</span></div>
+                    <p class="product-description">প্রতিদিনের আপডেটের জন্য সেরা গ্রুপ।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="ডেইলি ডোজ" data-group-price="99">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="ডেইলি ডোজ" data-group-price="99">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">উইকেন্ড স্পেশাল <span class="badge badge-premium">Sale</span></span> <span class="badge badge-price">৳ 139</span></div>
+                    <p class="product-description">সাপ্তাহিক ছুটির দিনের জন্য বিশেষ আয়োজন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="উইকেন্ড স্পেশাল" data-group-price="139">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="উইকেন্ড স্পেশাল" data-group-price="139">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">টিচার্স কালেকশন <span class="badge badge-premium">Hot</span></span> <span class="badge badge-price">৳ 189</span></div>
+                    <p class="product-description">বিশেষ থিমের হট কালেকশন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="টিচার্স কালেকশন" data-group-price="189">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="টিচার্স কালেকশন" data-group-price="189">🚀 Buy Now</a>
+                    </div>
+                 </div>
+                 <div class="product-card hidden">
+                    <div class="product-header"><span class="product-title">স্টুডেন্ট স্পট <span class="badge badge-premium">New</span></span> <span class="badge badge-price">৳ 79</span></div>
+                    <p class="product-description">নতুন এবং তরুণদের জন্য কালেকশন।</p>
+                    <div class="product-buttons">
+                        <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
+                        <a href="#" class="product-btn btn-add-cart" data-group-name="স্টুডেন্ট স্পট" data-group-price="79">🛒 Add to Cart</a>
+                        <a href="#" class="product-btn btn-buy-now" data-group-name="স্টুডেন্ট স্পট" data-group-price="79">🚀 Buy Now</a>
+                    </div>
+                 </div>
                  <div class="product-card hidden">
                     <div class="product-header"><span class="product-title">আল্টিমেট বান্ডেল <span class="badge badge-premium">Best</span></span> <span class="badge badge-price">৳ 499</span></div>
-                    <p class="product-description">সবগুলো প্রিমিয়াম গ্রুপের আক্সেস একসাথে।</p>
+                    <p class="product-description">সবগুলো প্রিমিয়াম গ্রুপের আক্সেস একসাথে। সেরা ডিল!</p>
                     <div class="product-buttons">
                         <a href="#" class="product-btn btn-demo" target="_blank" onclick="alert('এখানে আপনার ডেমো গ্রুপের টেলিগ্রাম লিংক যুক্ত করুন।'); return false;">👁 Demo</a>
                         <a href="#" class="product-btn btn-add-cart" data-group-name="আল্টিমেট বান্ডেল" data-group-price="499">🛒 Add to Cart</a>
@@ -962,7 +1150,7 @@
         লাইভ সাপোর্ট
     </a>
 
-    <div id="temp-receipt-container" style="position: absolute; left: -9999px; width: 400px; padding: 10px; background-color: var(--bg-light);"></div>
+    <div id="temp-receipt-container" style="position: absolute; left: -9999px; width: 400px; padding: 10px; background-color: var(--bg-light); font-family: 'Inter', Arial, sans-serif;"></div>
 
 
     <script>
@@ -986,7 +1174,7 @@
         }
         function saveHistory() { localStorage.setItem(HISTORY_KEY, JSON.stringify(purchaseHistory)); }
         function loadHistory() {
-            try {
+             try {
                 const savedHistory = localStorage.getItem(HISTORY_KEY);
                 purchaseHistory = savedHistory ? JSON.parse(savedHistory) : [];
             } catch (e) { console.error("Failed to load history", e); purchaseHistory = []; }
@@ -1005,7 +1193,7 @@
             if (targetPage) targetPage.classList.add('active');
             else document.getElementById('homepage').classList.add('active'); 
             if (pageId === 'cartpage') renderCart();
-            if (pageId === 'historypage') renderHistory(); // ইতিহাস পেজ দেখানোর সময় রেন্ডার
+            if (pageId === 'historypage') renderHistory(); 
             window.scrollTo(0, 0);
         }
 
@@ -1013,8 +1201,9 @@
         window.addEventListener('hashchange', () => displayPage(location.hash.substring(1)));
         document.addEventListener('DOMContentLoaded', () => {
             loadCart();
-            loadHistory(); // লোডের সময় ইতিহাস লোড
+            loadHistory(); 
             displayPage(location.hash.substring(1)); 
+            startUserCounter(); // ডাইনামিক কাউন্টার চালু করা
         });
 
         allNavButtons.forEach(button => {
@@ -1029,15 +1218,13 @@
         // === গ্রুপ পেজের "আরও দেখুন" বাটন ===
         const loadMoreBtn = document.getElementById('load-more-btn');
         if (loadMoreBtn) {
-            const productCards = document.querySelectorAll('#grouppage .product-card'); // সব কার্ড সিলেক্ট
+            const productCards = document.querySelectorAll('#grouppage .product-card');
             const itemsPerPage = 10;
             let itemsShown = itemsPerPage;
 
-            // শুরুতে ১০টির পরেরগুলো হাইড করা
             productCards.forEach((card, index) => {
                 if (index >= itemsPerPage) card.classList.add('hidden');
             });
-            // যদি ৩০টির কম থাকে, বাটন শুরুতেই হাইড
              if (productCards.length <= itemsPerPage) loadMoreBtn.style.display = 'none';
 
             loadMoreBtn.addEventListener('click', function() {
@@ -1138,7 +1325,7 @@
             let totalPrice = 0;
             let itemNames = cart.map(item => item.name); 
             cart.forEach(item => { totalPrice += item.price; });
-            const groupNameString = itemNames.join(', '); // কমা দিয়ে স্ট্রিং 
+            const groupNameString = itemNames.join(', '); 
             populatePaymentForm(groupNameString, totalPrice); 
             showPage('paymentpage');
         });
@@ -1171,9 +1358,8 @@
             purchaseHistory.push(receiptData);
             saveHistory(); 
             
-            // যদি কার্ট থেকে পেমেন্ট হয়, কার্ট খালি করা
-            if (cart.length > 0 && groupNameFromForm.includes(cart[0].name)) { // কার্টের প্রথম আইটেমের নাম আছে কিনা চেক
-                 if(groupNameFromForm.split(',').length === cart.length){ // গ্রুপের সংখ্যা সমান কিনা চেক
+            if (cart.length > 0 && groupNameFromForm.includes(cart[0].name)) { 
+                 if(groupNameFromForm.split(',').length === cart.length){ 
                     cart = [];
                     saveCart(); 
                  }
@@ -1187,7 +1373,7 @@
         // --- রশিদ পেজ পূরণ করা ---
         function populateReceiptPage(data) {
             document.getElementById('receipt-name').textContent = data.name;
-            document.getElementById('receipt-group').textContent = data.group; // একাধিক নাম থাকলে কমা সহ দেখাবে
+            document.getElementById('receipt-group').textContent = data.group; 
             document.getElementById('receipt-txn-id').textContent = data.txnId;
             document.getElementById('receipt-verify-code').textContent = data.verifyCode;
             document.getElementById('receipt-time').textContent = data.time;
@@ -1196,26 +1382,46 @@
         
         // --- রশিদ ডাউনলোড (রশিদ পেজ থেকে) ---
         document.getElementById('download-receipt-btn').addEventListener('click', function() {
-            downloadReceiptElement('receipt-card');
+            const receiptCardElement = document.getElementById('receipt-card');
+            if (receiptCardElement) {
+                downloadReceiptElement(receiptCardElement, 'receipt-page'); // সোর্স উল্লেখ
+            } else {
+                 alert("প্রমাণপত্র এলিমেন্ট খুঁজে পাওয়া যায়নি।");
+            }
         });
         
-        // --- রশিদ ডাউনলোড (যেকোনো এলিমেন্ট আইডি থেকে) ---
-        function downloadReceiptElement(elementId) {
-            const elementToDownload = document.getElementById(elementId);
-            if (!elementToDownload) return;
+        // --- রশিদ ডাউনলোড (যেকোনো HTML এলিমেন্ট থেকে) ---
+        function downloadReceiptElement(elementToDownload, source = 'unknown') {
+             if (!elementToDownload) {
+                 console.error("Element to download is missing. Source:", source);
+                 alert("ডাউনলোড করার জন্য প্রমাণপত্র তৈরি করা যায়নি।");
+                 return;
+             }
+             
+             // ডাউনলোড শুরু করার আগে বাটন স্টেট পরিবর্তন (অপশনাল)
+             const downloadButton = (source === 'history') ? 
+                document.querySelector(`.btn-download-history[data-history-index="${elementToDownload.dataset.historyIndex}"]`) : 
+                document.getElementById('download-receipt-btn');
+                
+             const originalButtonText = downloadButton ? downloadButton.innerHTML : '';
+             if(downloadButton) downloadButton.innerHTML = 'ডাউনলোড হচ্ছে...';
 
-            html2canvas(elementToDownload, { 
+             html2canvas(elementToDownload, { 
                 scale: 2,
-                logging: false, // কনসোল লগ বন্ধ করা
-                useCORS: true // যদি ছবিতে ক্রস-অরিজিন সমস্যা হয়
+                logging: false, 
+                useCORS: true 
              }).then(canvas => {
                 const link = document.createElement('a');
                 link.href = canvas.toDataURL('image/png');
-                link.download = `payment-receipt-${Date.now()}.png`;
+                 // ফাইলের নামের জন্য ভেরিফাই কোড বা টাইমস্ট্যাম্প ব্যবহার
+                const verifyCode = elementToDownload.querySelector('#receipt-verify-code, .receipt-item span[data-type="verify-code"]')?.textContent || Date.now();
+                link.download = `receipt-${verifyCode}.png`;
                 link.click();
+                if(downloadButton) downloadButton.innerHTML = originalButtonText; 
             }).catch(err => {
-                 console.error("Error downloading receipt:", err);
+                 console.error("Error downloading receipt:", err, "Source:", source);
                  alert("প্রমাণপত্র ডাউনলোড করতে সমস্যা হচ্ছে।");
+                 if(downloadButton) downloadButton.innerHTML = originalButtonText; 
             });
         }
         
@@ -1225,9 +1431,9 @@
             const emptyMessage = document.getElementById('history-empty-message');
             historyContainer.innerHTML = '';
             
-            loadHistory(); // **গুরুত্বপূর্ণ: রেন্ডার করার আগে লোড**
+            // loadHistory(); // পেজ লোডেই লোড হয়, এখানে দরকার নেই
             
-            if (!purchaseHistory || purchaseHistory.length === 0) { // Check if purchaseHistory is null or empty
+            if (!purchaseHistory || purchaseHistory.length === 0) { 
                 historyContainer.appendChild(emptyMessage);
                 emptyMessage.style.display = 'block';
             } else {
@@ -1238,9 +1444,8 @@
                     card.className = 'history-card';
                     
                     let displayName = item.group;
-                    if (displayName === 'প্রিমিয়াম গ্রুপ ১') displayName = 'প্রিমিয়াম গ্রুপ 🔥'; 
-                    else if (displayName === 'এক্সক্লুসিভ কালেকশন') displayName = 'এক্সক্লুসিভ কালেকশন 🔞'; 
-                    else if (displayName.includes(',')) {
+                    // গ্রুপের নাম স্যানিটাইজ বা সংক্ষিপ্ত করার প্রয়োজন হলে এখানে করতে পারেন
+                    if (displayName.includes(',')) {
                          displayName = displayName.split(',').slice(0, 2).join(', ') + (displayName.split(',').length > 2 ? '...' : '');
                     }
                     
@@ -1263,42 +1468,75 @@
         // --- ইতিহাস পেজ থেকে সরাসরি ডাউনলোড ---
         document.getElementById('history-list-container').addEventListener('click', function(e) {
             if (e.target.classList.contains('btn-download-history')) {
-                const index = parseInt(e.target.getAttribute('data-history-index'));
-                 if (index >= 0 && index < purchaseHistory.length) { // Check index validity
+                const button = e.target; // বাটন এলিমেন্ট
+                const index = parseInt(button.getAttribute('data-history-index'));
+                 if (index >= 0 && index < purchaseHistory.length) { 
                     const receiptData = purchaseHistory[index];
                     
                     // অদৃশ্য কন্টেইনার তৈরি করা ও ডেটা দিয়ে পূরণ করা
                     const tempReceiptContainer = document.getElementById('temp-receipt-container');
                     tempReceiptContainer.innerHTML = `
-                        <div class="receipt-card" style="font-family: 'Inter', Arial, sans-serif; padding: 25px; background: white; border-radius: 18px; border: 1px solid #E5E7EB; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); text-align: left; width: 100%; box-sizing: border-box;">
+                        <div class="receipt-card temp-receipt" 
+                             data-history-index="${index}" style="font-family: 'Inter', Arial, sans-serif; padding: 25px; background: white; border-radius: 18px; border: 1px solid #E5E7EB; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); text-align: left; width: 100%; box-sizing: border-box;">
                             <div class="receipt-header" style="text-align: center; font-size: 1.3rem; font-weight: 600; color: #111827; padding-bottom: 15px; margin-bottom: 20px; border-bottom: 2px dashed #E5E7EB;">টেলিগ্রাম বাজার</div>
-                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">👤 নাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.name}</span></div>
-                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💬 গ্রুপ:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.group}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: flex-start;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">👤 নাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.name}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: flex-start;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💬 গ্রুপ:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.group}</span></div>
                             <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🔑 ট্রানজেকশন আইডি:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-word;">${receiptData.txnId}</span></div>
-                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🧾 যাচাই কোড:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.verifyCode}</span></div>
+                            <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🧾 যাচাই কোড:</strong><span data-type="verify-code" style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.verifyCode}</span></div>
                             <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 15px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">🗓️ সময়:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">${receiptData.time}</span></div>
                             <div class="receipt-item" style="display: flex; justify-content: space-between; font-size: 0.95rem; margin-bottom: 0px; align-items: center;"><strong style="color: #374151; font-weight: 500; margin-right: 10px; flex-shrink: 0;">💰 দাম:</strong><span style="color: #111827; font-weight: 600; text-align: right; word-break: break-all;">৳ ${receiptData.price}</span></div>
                         </div>
                     `;
                     
-                    // ডাউনলোড শুরু করার আগে একটু অপেক্ষা (টেম্পলেট রেন্ডার হওয়ার জন্য)
+                    // ডাউনলোড শুরু করার আগে একটু অপেক্ষা
                     setTimeout(() => {
-                        const elementToCapture = tempReceiptContainer.querySelector('.receipt-card');
+                        const elementToCapture = tempReceiptContainer.querySelector('.temp-receipt'); 
                         if (elementToCapture) {
-                            downloadReceiptElement(elementToCapture); // সরাসরি এলিমেন্ট পাস
+                            downloadReceiptElement(elementToCapture, 'history'); // সোর্স 'history' পাঠানো
                         } else {
                              alert("ডাউনলোড করতে সমস্যা হচ্ছে।");
-                             console.error("Temporary receipt card not found for download.");
+                             console.error("Temporary receipt card for history download not found.");
                         }
-                         // টেমপ্লেট কন্টেইনার খালি করা 
-                         // setTimeout(() => { tempReceiptContainer.innerHTML = ''; }, 100); 
-                    }, 100); // 100ms ডিলে
+                         // টেমপ্লেট কন্টেইনার খালি করা (অপশনাল কিন্তু ভালো)
+                         setTimeout(() => { tempReceiptContainer.innerHTML = ''; }, 500); 
+                    }, 50); // ডিলে সামান্য কমানো হলো
                  } else {
                      console.error("Invalid history index:", index);
                      alert("ইতিহাস থেকে এই আইটেমটি ডাউনলোড করা যাচ্ছে না।");
                  }
             }
         });
+
+         // --- ডাইনামিক ইউজার কাউন্টার ---
+         let userCount = 10025; // শুরু সংখ্যা
+         const userCounterElement = document.getElementById('user-counter');
+         let counterInterval; // ইন্টারভাল আইডি সেভ করার জন্য
+
+         function updateUserCount() {
+             const increment = Math.floor(Math.random() * 3) + 1; 
+             userCount += increment;
+             if (userCounterElement) { 
+                userCounterElement.textContent = `👤 ব্যবহারকারী: ${userCount.toLocaleString('bn-BD')}+`; 
+             }
+         }
+
+         function startUserCounter() {
+            if (userCounterElement && !counterInterval) { // এলিমেন্ট থাকলে এবং ইন্টারভাল চালু না থাকলে
+                 updateUserCount(); // শুরুতে একবার আপডেট
+                 counterInterval = setInterval(updateUserCount, Math.random() * 4000 + 3000); // ৩-৭ সেকেন্ড পর পর
+            }
+         }
+         
+         // পেজ দৃশ্যমান হলে কাউন্টার আবার চালু করা (অপশনাল)
+         // document.addEventListener("visibilitychange", () => {
+         //    if (document.visibilityState === "visible" && !counterInterval) {
+         //        startUserCounter();
+         //    } else if (document.visibilityState === "hidden" && counterInterval) {
+         //        clearInterval(counterInterval);
+         //        counterInterval = null;
+         //    }
+         // });
+
 
     </script>
 
